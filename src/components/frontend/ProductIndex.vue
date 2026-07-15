@@ -104,7 +104,7 @@ watch(
 
 <template>
     <div class="search-bar">
-        <input v-model="searchInput" name="search" placeholder="搜尋商品" type="search" @keyup.enter="doSearch">
+        <input v-model.trim="searchInput" name="search" placeholder="搜尋商品" type="search" @keyup.enter="doSearch">
         <button type="submit" @click="doSearch"><i class="ti-search"></i></button>
     </div>
 

@@ -173,7 +173,6 @@ async function handleCheckout() {
         } else {
             alert(data.message || '結帳失敗')
         }
-    } finally {
         submitting.value = false
     }
 }

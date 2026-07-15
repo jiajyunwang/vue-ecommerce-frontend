@@ -194,22 +194,24 @@ async function submitReview() {
     <template v-for="order in orders" :key="order.id">
         <div id="hidden" class="popup-bg" v-if="reviewPopup && reviewPopup.orderId === order.id">
             <div class="review-popup">
-                <div v-for="(item, index) in reviewPopup.items" :key="index" class="review">
-                    <p>{{ item.title }}</p>
-                    <div class="rating-box">
-                        <span
-                        v-for="star in 5"
-                        :key="star"
-                        :class="['empty-stars', (item.hoverRating || item.rating) >= star ? 'full' : '']"
-                        @mouseover="item.hoverRating = star"
-                        @mouseout="item.hoverRating = 0"
-                        @click="item.rating = star"
-                        ></span>
+                <form>  
+                    <div v-for="(item, index) in reviewPopup.items" :key="index" class="review">
+                        <p>{{ item.title }}</p>
+                        <div class="rating-box">
+                            <span
+                            v-for="star in 5"
+                            :key="star"
+                            :class="['empty-stars', (item.hoverRating || item.rating) >= star ? 'full' : '']"
+                            @mouseover="item.hoverRating = star"
+                            @mouseout="item.hoverRating = 0"
+                            @click="item.rating = star"
+                            ></span>
+                        </div>
+                        <div class="review-inner">
+                            <textarea class="comment" v-model="item.comment"></textarea>
+                        </div>
                     </div>
-                    <div class="review-inner">
-                        <textarea class="comment" v-model="item.comment"></textarea>
-                    </div>
-                </div>
+                </form>
                 <div class="button">
                     <button
                         v-show="reviewAllRated"

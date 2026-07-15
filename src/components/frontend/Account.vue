@@ -30,6 +30,14 @@ async function fetchUser() {
 
 async function submit() {
     errors.value = {}
+    if (!form.value.nickname.trim()) {
+        errors.value.nickname = ['暱稱為必填欄位']
+        return
+    }
+    if (form.value.cellphone && !/^0\d{9}$/.test(form.value.cellphone)) {
+        errors.value.cellphone = ['手機號碼格式不正確']
+        return
+    }
     submitting.value = true
     try {
         await axios.get('/sanctum/csrf-cookie');
