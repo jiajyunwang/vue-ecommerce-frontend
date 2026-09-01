@@ -8,13 +8,6 @@ import Cart from '@/components/frontend/Cart.vue'
 import Checkout from '@/components/frontend/Checkout.vue'
 import Orders from '@/components/frontend/Orders.vue'
 import OrderDetail from '@/components/frontend/OrderDetail.vue'
-import AdminLogin from '@/components/backend/AdminLogin.vue'
-import AdminLayout from '@/components/backend/AdminLayout.vue'
-import AdminProductIndex from '@/components/backend/AdminProductIndex.vue'
-import AdminProductCreate from '@/components/backend/AdminProductCreate.vue'
-import AdminProductEdit from '@/components/backend/AdminProductEdit.vue'
-import AdminOrderIndex from '@/components/backend/AdminOrderIndex.vue'
-import AdminOrderInvoice from '@/components/backend/AdminOrderInvoice.vue'
 import axios from 'axios';
 
 const routes = [
@@ -63,22 +56,6 @@ const routes = [
         component: OrderDetail,
         meta: { requiresAuth: true } 
     },
-    { 
-        path: '/admin/login', 
-        component: AdminLogin 
-    },
-    {
-        path: '/admin',
-        component: AdminLayout,
-        children: [
-        { path: 'product', component: AdminProductIndex },
-        { path: 'product/create', component: AdminProductCreate },
-        { path: 'product/:id/edit', component: AdminProductEdit },
-        { path: 'orders', component: AdminOrderIndex },
-        ],
-    },
-    { path: '/admin/orders/:id/invoice', component: AdminOrderInvoice },
-    { path: '/request-action/' },
 ]
 
 const router = createRouter({
@@ -106,8 +83,10 @@ router.beforeEach(async (to) => {
     }
 
     try {
-
-        await axios.get('/users')
+        const response = await axios.get('/api/users')
+        if (!response.data) {
+            return '/login';
+        }
 
         return true
 

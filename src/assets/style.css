@@ -1073,7 +1073,6 @@ button {
     background-color: #d8d8d8;
     border: 1px solid #ccc;
     border-radius: 10px;
-    display: none;
     flex-direction: column;
     position: fixed;
     bottom: 5px;
@@ -1086,7 +1085,6 @@ button {
     background-color: #d8d8d8;
     border: 1px solid #ccc;
     border-radius: 10px;
-    display: none;
     flex-direction: column;
     position: fixed;
     bottom: 5px;

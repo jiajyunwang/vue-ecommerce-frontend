@@ -36,7 +36,7 @@ export default defineConfig({
       '/request-action': {
         target: 'http://localhost:8000',
         changeOrigin: true,
-      }
+      },
     }
   }
 })
