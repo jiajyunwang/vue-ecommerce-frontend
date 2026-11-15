@@ -187,7 +187,7 @@ async function submitReview() {
         </div>
     </div>
 
-    <div class="hidden popup-content" v-show="productNotExistVisible">
+    <div class="popup-content" v-show="productNotExistVisible">
         <p>商品不存在</p>
     </div>
 

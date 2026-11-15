@@ -54,7 +54,7 @@ async function updateQuantity(cart) {
     if (isNaN(qty) || qty < 1) cart.quantity = 1
     else if (qty > cart.product.stock) cart.quantity = cart.product.stock
     else cart.quantity = qty
-    cart.amount = cart.quantity * cart.price
+    cart.amount = cart.quantity * cart.product.price
 
     await axios.get('/sanctum/csrf-cookie');
     await axios.post('/user/cart-update', {
@@ -70,13 +70,13 @@ function increment(cart) {
     } else {
         cart.quantity = cart.product.stock
     }
-    cart.amount = cart.quantity * cart.price
+    cart.amount = cart.quantity * cart.product.price
     updateQuantity(cart)
 }
 
 function decrement(cart) {
     cart.quantity = Math.max(1, cart.quantity - 1)
-    cart.amount = cart.quantity * cart.price
+    cart.amount = cart.quantity * cart.product.price
     updateQuantity(cart)
 }
 
